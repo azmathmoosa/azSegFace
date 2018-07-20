@@ -25,9 +25,32 @@ The underlying network is an FCN with 200+ layers.
 * Click generate and cmake will generate project files.
 * Exit `cmake-gui` and in the PS terminal type `cmake --build . --config Release`
 * Build might take 15 to 20 minutes depending on your system configuration.
-* 
+* After build, you can run the application from 
+
+```
+>cd Release\
+>.\dnn_semantic_face_ex.exe \path\to\images\directory
+```
+* The application will scan and load the CNN from `..\..\nets\` directory.
+* It will show the output for each image in the directory.  Hit enter for next image.
+
+## Build in Linux
+
+* Install cmake, makeutils etc.
+* Install Nvidia CUDA and cuDNN
+* In the repo directory create a new directory called `build` 
+* Open a terminal, and type `cmake-gui ../`
+* In the cmake gui, select `Unix Makefiles` as generator. Click configure.
+* Cmake will try to configure build environment. 
+* Click generate and cmake will generate project files.
+* Exit `cmake-gui` and in the terminal type `cmake --build .`
+* Build might take 15 to 20 minutes depending on your system configuration.
+* After build, you can run the application from terminal.
 
 
+```
+$./dnn_semantic_face_ex.exe path/to/images/directory
+```
 # Preview
 
 ![segmentated face](https://github.com/azmathmoosa/azSegFace/blob/master/pics/1.PNG)
