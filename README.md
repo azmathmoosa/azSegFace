@@ -11,7 +11,11 @@ The underlying network is an FCN with 200+ layers.
 
 # Usage
 
-## Build in Windows
+## Build
+
+The project uses CMake.  
+
+### Build in Windows
 
 * Install Cmake, VS 2017 x64 with VC tools v140.  
 * Also install CUDA and cuDNN from NVidia's website. This was tested on CUDA v9.0. (If CUDA install fails, disable VS integration ad install again)
@@ -25,16 +29,8 @@ The underlying network is an FCN with 200+ layers.
 * Click generate and cmake will generate project files.
 * Exit `cmake-gui` and in the PS terminal type `cmake --build . --config Release`
 * Build might take 15 to 20 minutes depending on your system configuration.
-* After build, you can run the application from 
 
-```
->cd Release\
->.\dnn_semantic_face_ex.exe \path\to\images\directory
-```
-* The application will scan and load the CNN from `..\..\nets\` directory.
-* It will show the output for each image in the directory.  Hit enter for next image.
-
-## Build in Linux
+### Build in Linux
 
 * Install cmake, makeutils etc.
 * Install Nvidia CUDA and cuDNN
@@ -45,12 +41,32 @@ The underlying network is an FCN with 200+ layers.
 * Click generate and cmake will generate project files.
 * Exit `cmake-gui` and in the terminal type `cmake --build .`
 * Build might take 15 to 20 minutes depending on your system configuration.
-* After build, you can run the application from terminal.
 
+## Inference
 
+* After build, you can run the application  
 ```
+>cd Release\
+>.\dnn_semantic_face_ex.exe \path\to\images\directory
+
+-- or in linux --
 $./dnn_semantic_face_ex.exe path/to/images/directory
 ```
+* The application will scan and load the CNN from `..\..\nets\` directory.
+* It will show the output for each image in the directory.  Hit enter for next image.
+
+## Training
+
+* Use the VOC annotation tool in `voc_utl` folder to annotate on your custom images.
+* The tool will organize the dataset as a directory 
+
+![dataset](https://github.com/azmathmoosa/azSegFace/blob/master/pics/dataset.png)
+
+* To train, use `./dnn_semantic_face_train_ex.exe path/to/dataset/dir`
+* The app will first look for `semantic_segmentation_voc2012net.dnn` in the current directory and do transfer learning.
+* You may have to edit the src file with the correct path to the net or move the net to the same directory as the training executable.
+* After training completes, a new `.dnn` file will be saved that can be used with the inference executable.
+
 # Preview
 
 ![segmentated face](https://github.com/azmathmoosa/azSegFace/blob/master/pics/1.PNG)
